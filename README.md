@@ -1,2 +1,2 @@
-# DayPlanner-
+# DayPlanner
 Homework 5
