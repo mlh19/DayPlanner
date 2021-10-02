@@ -26,6 +26,7 @@ for (var i = 0; i < hours.length; i++) {
     var textArea = document.createElement("textarea");
     textArea.classList.add("col-md-10");
     textArea.id = "textArea" + i;
+
     dayDiv.append(textArea);
 
     // Create a button.
@@ -43,19 +44,44 @@ for (var i = 0; i < hours.length; i++) {
 
 // This function is called when the save button is pressed.
 function saveButtonPressed() {
-    // this refers to the current object that called this function.
+    // "this" a Javascript keyword refers to the button that called this function.
     console.log(this.id);
+    //The above is the same as: console.log(button0.id);
     var textArea = document.getElementById("textArea" + this.id); 
     console.log(textArea.id);
-    // > Get the text inside textArea and save the text as a key("textArea" + id)-value in local storage.
+    // What you pass to log it will print in the console.
+    console.log(textArea.value);
+    // Create local storage.
     // key-value types are dictionaries and they can CANNOT have duplicate keys.
-    localStorage.setItem("textArea" + this.id, "value");
-    // { "textArea0": "1729" }
+    // Save the text area's value (user typed in) to the corresponding key.
+    localStorage.setItem("textArea" + this.id, textArea.value);
 }
 
 // Create a function that gets the data from local storage, and inserts it into
 // each corresponding textBox that matches the key ("textArea" + i) so we know we
-// are putting it back in the right place.
-// When you get the data for textAreaX, you just get that element id and set its text to the value.
-// { "textArea0": "1729" } loop
+function loadUserPlannerData() {
+    for(var i=0; i < hours.length; i++) {
+        // Get value of (textArea + i) key, and store it in dayText.
+        var dayText = localStorage.getItem("textArea" + i);
+        var textAreaEl = document.getElementById("textArea" + i);
+        textAreaEl.value = dayText;
+        console.log(dayText);
+     }  
+}
+
+loadUserPlannerData();
+
+function removeAllData() {
+    // First, we want to remove every item for each key.
+    for(var i = 0; i < hours.length; i++) {
+        localStorage.removeItem("textArea" + i);
+    }
+    // Second, we want to update the UI and clear each text box.
+    // Since there is no data to get from storage, each textAreaEl value 
+    // is set to null.
+    loadUserPlannerData();
+}
+var resetButton = document.getElementById("Reset");
+resetButton.addEventListener("click", removeAllData);
+
  
