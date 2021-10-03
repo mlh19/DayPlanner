@@ -10,7 +10,7 @@ today();
 
 
 //Array of hours
-const hours = ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"];
+const hours = ["09am", "10am", "11am", "12pm", "01pm", "02pm", "03pm", "04pm", "05pm"];
 
 // Create each day section for the planner.
 for (var i = 0; i < hours.length; i++) {
@@ -18,9 +18,10 @@ for (var i = 0; i < hours.length; i++) {
     var dayDiv = document.createElement("div");
     dayDiv.classList.add("row");
 
+    // Create the hour label.
     var hourDiv = document.createElement("div");
     hourDiv.textContent = hours[i];
-    hourDiv.classList.add("col-md-1", "hour");
+    hourDiv.classList.add("col-md-1", "hour", "time-block");
     dayDiv.append(hourDiv);
 
     // Create the input box.
@@ -28,6 +29,7 @@ for (var i = 0; i < hours.length; i++) {
     textArea.classList.add("col-md-10", "hour");
     textArea.id = "textArea" + i;
     dayDiv.append(textArea);
+    colorTextArea(i, textArea);
 
     // Create a button.
     var saveButton = document.createElement("button");
@@ -41,6 +43,41 @@ for (var i = 0; i < hours.length; i++) {
     // Get a reference to the planner and add each day div.
     document.getElementById("Planner Section").append(dayDiv);
 }
+
+// This function will color the text area depending on the planner's day hour and the
+// current time.
+function colorTextArea(i, textAreaToColor) {
+    // Get the current hour and meridiam.
+    // var currentTime = "12pm"; // Testing purposes.
+    var currentTime = moment().format("hha");
+    // Get the index of where it exists in the hours array.
+    var currentTimeIndex = hours.indexOf(currentTime);
+
+    if (currentTimeIndex == -1) {
+        // If the current time is NOT present in the planner, it only
+        // matters to check before 9 am and after 5 pm.
+        var isAfter5pm = currentTime.slice(0, 2) > 5;
+        var isAm = currentTime.slice(2, 4) != "am";
+        if (isAfter5pm && isAm) {
+            textAreaToColor.classList.add("past");
+        } else {
+            textAreaToColor.classList.add("future");
+        }
+    } else {
+        // If the curent time is present in the planner, color accordingly.
+        if (currentTimeIndex > i) {
+            // Color Past - Gray
+            textAreaToColor.classList.add("past");
+        } else if (currentTimeIndex == i) {
+            // Color Present - Red
+            textAreaToColor.classList.add("present");
+        } else {
+            // Color Future - Green
+            textAreaToColor.classList.add("future");
+        }
+    }
+}
+
 
 // This function is called when the save button is pressed.
 function saveButtonPressed() {
