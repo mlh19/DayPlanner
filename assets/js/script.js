@@ -3,13 +3,14 @@ var today = function() {
     var day = moment();
     $("#currentDay").text(day.format("dddd, MMMM Do YYYY, hh:mm:ss a"));
 }
+
 setInterval(today, 1000);
 // Set the text when the page loads immeidately instead of waiting 1 second.
 today();
 
 
 //Array of hours
-const hours = ["09am", "10am", "11am", "12pm", "01pm", "02pm", "03pm", "04pm", "05pm"];
+const hours = ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"];
 
 // Create each day section for the planner.
 for (var i = 0; i < hours.length; i++) {
@@ -19,19 +20,18 @@ for (var i = 0; i < hours.length; i++) {
 
     var hourDiv = document.createElement("div");
     hourDiv.textContent = hours[i];
-    hourDiv.classList.add("col-md-1");
+    hourDiv.classList.add("col-md-1", "hour");
     dayDiv.append(hourDiv);
 
     // Create the input box.
     var textArea = document.createElement("textarea");
-    textArea.classList.add("col-md-10");
+    textArea.classList.add("col-md-10", "hour");
     textArea.id = "textArea" + i;
-
     dayDiv.append(textArea);
 
     // Create a button.
     var saveButton = document.createElement("button");
-    saveButton.classList.add("col-md-1");
+    saveButton.classList.add("col-md-1", "saveBtn");
     saveButton.textContent = "Save";
     saveButton.id = i;
     // You need to add an event listener to this button.
@@ -78,7 +78,7 @@ function removeAllData() {
     }
     // Second, we want to update the UI and clear each text box.
     // Since there is no data to get from storage, each textAreaEl value 
-    // is set to null.
+    // is set to 
     loadUserPlannerData();
 }
 var resetButton = document.getElementById("Reset");
