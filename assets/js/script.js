@@ -26,7 +26,7 @@ for (var i = 0; i < hours.length; i++) {
 
     // Create the input box.
     var textArea = document.createElement("textarea");
-    textArea.classList.add("col-md-10", "hour");
+    textArea.classList.add("col-md-10", "hour", "textarea");
     textArea.id = "textArea" + i;
     dayDiv.append(textArea);
     colorTextArea(i, textArea);
@@ -34,7 +34,7 @@ for (var i = 0; i < hours.length; i++) {
     // Create a button.
     var saveButton = document.createElement("button");
     saveButton.classList.add("col-md-1", "saveBtn");
-    saveButton.textContent = "Save";
+    saveButton.innerHTML = '<i class="far fa-save"></i>';
     saveButton.id = i;
     // You need to add an event listener to this button.
     saveButton.addEventListener("click", saveButtonPressed);
