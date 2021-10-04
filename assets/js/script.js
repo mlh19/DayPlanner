@@ -1,3 +1,5 @@
+
+
 // Jumbotron
 var today = function() {
     var day = moment();
@@ -26,7 +28,7 @@ for (var i = 0; i < hours.length; i++) {
 
     // Create the input box.
     var textArea = document.createElement("textarea");
-    textArea.classList.add("col-md-10", "hour", "textarea");
+    textArea.classList.add("col-md-10", "hour", "textarea", "description");
     textArea.id = "textArea" + i;
     dayDiv.append(textArea);
     colorTextArea(i, textArea);

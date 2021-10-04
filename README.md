@@ -10,8 +10,32 @@ The objective of this assignemt is to create a daily planner for an employee who
 
 # Screenshot
 
+![Screenshot](./assets/images/screenshot.png)
+
+
+
+
+![Gif](./assets/images/05-third-party-apis-homework-demo.gif)
+
 # Deployed Link
 
+[Link to Project on GitHub Pages ](https://mlh19.github.io/DayPlanner/)
+
+
 # Other Details 
+- Worked on assignment independently.
+
+- Seeked help from an outside tutor for assistance to understand the meridiem logic.
+
+- Used an example provided by a peer in the class to format moment.js
+
+- Used the gif provided by instructor in the README.
+
+- https://www.w3schools.com/bootstrap/ 
+
+- https://www.youtube.com/watch?v=jjyesTGCzgU&feature=youtu.be 
+
+- https://www.youtube.com/watch?v=jjyesTGCzgU&feature=youtu.be
+
 
 
